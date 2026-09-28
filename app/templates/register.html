@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="login-box">
+    <h2>Register</h2>
+    <form method="POST" action="{{ url_for('auth.register') }}">
+        
+        <!-- Name Field -->
+        <div class="form-group">
+            {{ form.name.label }}
+            {{ form.name(id="name") }}
+            
+            <!-- Display validation errors for name -->
+            {% if form.name.errors %}
+                <ul style="color: red; list-style-type: none; padding: 0; margin-top: 5px;">
+                {% for error in form.name.errors %}
+                    <li><small>{{ error }}</small></li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-group">
+            {{ form.email.label }}
+            {{ form.email(id="email") }}
+            
+            <!-- Display validation errors for email -->
+            {% if form.email.errors %}
+                <ul style="color: red; list-style-type: none; padding: 0; margin-top: 5px;">
+                {% for error in form.email.errors %}
+                    <li><small>{{ error }}</small></li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+            {{ form.password.label }}
+            {{ form.password(id="password") }}
+            
+            <!-- Display validation errors for password -->
+            {% if form.password.errors %}
+                <ul style="color: red; list-style-type: none; padding: 0; margin-top: 5px;">
+                {% for error in form.password.errors %}
+                    <li><small>{{ error }}</small></li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Submit Button -->
+        {{ form.submit(class="btn") }}
+    </form>
+    
+    <!-- Link back to Login -->
+    <p style="margin-top: 15px; text-align: center;">
+        Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a>
+    </p>
+</div>
+{% endblock %}
